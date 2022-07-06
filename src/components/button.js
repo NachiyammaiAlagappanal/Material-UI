@@ -1,11 +1,15 @@
 import { React } from 'react';
-import { Button, Tooltip } from '@mui/material';
+import { Button, ButtonGroup } from '@mui/material';
 
 const AddButton = () =>
 
-	<Tooltip title="add">
-		<Button> +
+	<ButtonGroup>
+		<Button variant="contained" size="large" color="success"> +
 		</Button>
-	</Tooltip>;
+		<Button variant="outlined" size="medium" color="warning"> -
+		</Button>
+		<Button variant="contained" size="small" color="primary"> *
+		</Button>
+	</ButtonGroup>;
 
 export default AddButton;
