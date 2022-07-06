@@ -1,9 +1,10 @@
 import { React } from 'react';
 import './App.scss';
+import AddButton from './components/button';
 
 const App = () =>
 	<div className="App" role="App">
-		Ready to start.
+		{AddButton()}
 	</div>;
 
 export default App;
