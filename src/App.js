@@ -1,10 +1,10 @@
 import { React } from 'react';
 import './App.scss';
-import AddButton from './components/button';
+import MarkSheetD from './components/MITable';
 
-const App = () =>
+const App = (context) =>
 	<div className="App" role="App">
-		{AddButton()}
+		{MarkSheetD(context)}
 	</div>;
 
 export default App;
