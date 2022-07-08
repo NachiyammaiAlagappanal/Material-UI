@@ -11,14 +11,12 @@ import Paper from '@mui/material/Paper';
 import { keys, values } from '@laufire/utils/lib';
 import { map } from '@laufire/utils/collection';
 import consolidatedData from '../services/consolidatedData';
+import { unique } from '@laufire/utils/predicates';
 
 const MarkSheetD = (context) => {
-	const { config: { studentMarks }} = context;
-	const subjects = values(values(studentMarks));
-
-	const item = map(subjects, (subject) => keys(subject)).flat();
-	const uniqueSubject = [...new Set(item)];
-	const data = consolidatedData(context);
+	const { data, newData } = consolidatedData(context);
+	const columns = data.map((d) => keys(d.marks)).flat()
+		.filter(unique);
 
 	return (
 		<TableContainer component={ Paper }>
@@ -29,24 +27,24 @@ const MarkSheetD = (context) => {
 							component="th"
 							align="center"
 						>STUDENTS NAME</TableCell>
-						{map(uniqueSubject, (sub) =>
-							<TableCell key={ sub } component="th"align="center">
-								{ sub }</TableCell>)}
+						{map(columns, (sub) =>
+							<TableCell
+								key={ sub }
+								component="th"
+								align="center"
+							>
+								{sub}</TableCell>)}
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{data.map((ele) =>
-						<TableRow
-							key={ ele.student }
-						>
-							<TableCell align="center">{ele.student}</TableCell>
-							<TableCell align="center">{ele.TAMIL}</TableCell>
-							<TableCell align="center">{ele.ENGLISH}</TableCell>
-							<TableCell align="center">{ele.SCIENCE}</TableCell>
-							<TableCell align="center">{ele.MATHS}</TableCell>
-							<TableCell align="center">{ele.SOCIAL}</TableCell>
-
-						</TableRow>)}
+					{map(newData, (row, i) => <TableRow key={ i }>{
+						map(values(row), (ele, j) =>
+							<TableCell
+								key={ j }
+								align="center"
+							>{ ele } </TableCell>)
+					}
+					</TableRow>)}
 				</TableBody>
 			</Table>
 		</TableContainer>
