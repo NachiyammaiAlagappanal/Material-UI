@@ -19,7 +19,13 @@ const MarkSheetD = (context) => {
 		.filter(unique);
 
 	return (
-		<TableContainer component={ Paper }>
+		<TableContainer
+			sx={ {
+				width: 650,
+				backgroundColor: 'pink',
+			} }
+			component={ Paper }
+		>
 			<Table>
 				<TableHead>
 					<TableRow component="th">
