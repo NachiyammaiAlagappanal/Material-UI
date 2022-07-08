@@ -14,19 +14,15 @@ import consolidatedData from '../services/consolidatedData';
 import { unique } from '@laufire/utils/predicates';
 
 const MarkSheetD = (context) => {
-	const { data, newData } = consolidatedData(context);
-	const columns = data.map((d) => keys(d.marks)).flat()
+	const newData = consolidatedData(context);
+	const columns = newData.map((d) => keys(d)).flat()
 		.filter(unique);
 
 	return (
 		<TableContainer component={ Paper }>
 			<Table>
 				<TableHead>
-					<TableRow>
-						<TableCell
-							component="th"
-							align="center"
-						>STUDENTS NAME</TableCell>
+					<TableRow component="th">
 						{map(columns, (sub) =>
 							<TableCell
 								key={ sub }
@@ -42,7 +38,7 @@ const MarkSheetD = (context) => {
 							<TableCell
 								key={ j }
 								align="center"
-							>{ ele } </TableCell>)
+							>{ele} </TableCell>)
 					}
 					</TableRow>)}
 				</TableBody>

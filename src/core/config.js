@@ -1,19 +1,19 @@
 const config = {
 	markSheets: [
 		{
-			student: 'Sriram',
+			StudentName: 'Sriram',
 			rollNo: 11,
 		},
 		{
-			student: 'Ram',
+			StudentName: 'Ram',
 			rollNo: 16,
 		},
 		{
-			student: 'sri',
+			StudentName: 'sri',
 			rollNo: 18,
 		},
 		{
-			student: 'mani',
+			StudentName: 'mani',
 			rollNo: 20,
 		},
 	],
