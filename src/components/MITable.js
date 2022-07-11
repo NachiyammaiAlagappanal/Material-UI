@@ -62,6 +62,7 @@ const MarkSheetD = (context) => {
 			<Slider
 				value={ Value }
 				onChange={ handleChange }
+				color="success"
 				size="large"
 				valueLabelDisplay="auto"
 				min={ 0 }
