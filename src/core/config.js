@@ -40,6 +40,10 @@ const config = {
 		},
 	},
 	subjects: ['ENGLISH', 'TAMIL', 'SCIENCE'],
+	chartProps: {
+		width: 300,
+		height: 300,
+	},
 };
 
 export default config;
