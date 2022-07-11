@@ -1,7 +1,7 @@
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-console */
 /* eslint-disable max-lines-per-function */
-import * as React from 'react';
+import { React, useState } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -20,6 +20,8 @@ const MarkSheetD = (context) => {
 	const newData = consolidatedData(context);
 	const columns = newData.map((d) => keys(d)).flat()
 		.filter(unique);
+	const [Value, setValue] = useState([20, 30]);
+	const handleChange = (Event, value) => setValue(value);
 
 	return (
 		<Box sx={ { width: 200 } }>
@@ -58,10 +60,10 @@ const MarkSheetD = (context) => {
 				</Table>
 			</TableContainer>
 			<Slider
+				value={ Value }
+				onChange={ handleChange }
 				size="large"
 				valueLabelDisplay="auto"
-				step={ 10 }
-				marks={ true }
 				min={ 0 }
 				max={ 100 }
 			/>
