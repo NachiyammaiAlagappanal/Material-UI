@@ -9,7 +9,6 @@ const consolidatedData = (context) => {
 		...studentMarks[rollNo],
 	}));
 
-	console.log(newData);
 	return newData;
 };
 
