@@ -1,3 +1,4 @@
+/* eslint-disable no-magic-numbers */
 /* eslint-disable no-console */
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
@@ -21,8 +22,7 @@ const MarkSheetD = (context) => {
 		.filter(unique);
 
 	return (
-		<Box sx={ { width: 100 } }>
-			<Slider defaultValue={ 50 } valueLabelDisplay="auto"/>
+		<Box sx={ { width: 200 } }>
 			<TableContainer
 				sx={ {
 					'width': 650,
@@ -57,6 +57,14 @@ const MarkSheetD = (context) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
+			<Slider
+				size="large"
+				valueLabelDisplay="auto"
+				step={ 10 }
+				marks={ true }
+				min={ 0 }
+				max={ 100 }
+			/>
 		</Box>
 	);
 };
