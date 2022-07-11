@@ -13,12 +13,12 @@ import { keys, values } from '@laufire/utils/lib';
 import { map } from '@laufire/utils/collection';
 import consolidatedData from '../services/consolidatedData';
 import { unique } from '@laufire/utils/predicates';
-import { Slider } from '@mui/material';
+import { Slider, Tooltip } from '@mui/material';
 import { Box } from '@mui/system';
 import FilterManager from '../services/FilterManager';
 
 const MarkSheetD = (context) => {
-	const { state: { range }, patchState } = context;
+	const { state: { range }, patchState, config: { subjects }} = context;
 	const newData = consolidatedData(context);
 	const columns = newData.map((d) => keys(d)).flat()
 		.filter(unique);
@@ -63,15 +63,17 @@ const MarkSheetD = (context) => {
 				</TableBody>
 			</Table>
 		</TableContainer>
-		<Slider
-			value={ range }
-			onChange={ handleChange }
-			color="success"
-			size="large"
-			valueLabelDisplay="auto"
-			min={ 0 }
-			max={ 100 }
-		/>
+		{map(subjects, (sub) => <Tooltip title={ `${ sub }` }>
+			<Slider
+				value={ range }
+				onChange={ handleChange }
+				color="success"
+				size="large"
+				valueLabelDisplay="auto"
+				min={ 0 }
+				max={ 100 }
+			/>
+		</Tooltip>)}
 	</Box>;
 };
 
