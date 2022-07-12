@@ -1,3 +1,4 @@
+/* eslint-disable no-mixed-spaces-and-tabs */
 /* eslint-disable no-magic-numbers */
 /* eslint-disable no-console */
 /* eslint-disable max-lines-per-function */
@@ -13,16 +14,17 @@ import { keys, values } from '@laufire/utils/lib';
 import { map } from '@laufire/utils/collection';
 import consolidatedData from '../services/consolidatedData';
 import { unique } from '@laufire/utils/predicates';
-import { Slider, Tooltip } from '@mui/material';
+import { Grid, Slider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import FilterManager from '../services/FilterManager';
 
 const MarkSheetD = (context) => {
-	const { state: { range }, patchState, config: { subjects }} = context;
+	const { state: { range }, config: { subjects }} = context;
 	const newData = consolidatedData(context);
 	const columns = newData.map((d) => keys(d)).flat()
 		.filter(unique);
-	const handleChange = (Event, value) => patchState({ range: value });
+
+	console.log(context);
 
 	const filterMark = FilterManager.filterMark({ ...context, data: newData });
 
@@ -41,7 +43,7 @@ const MarkSheetD = (context) => {
 		>
 			<Table>
 				<TableHead>
-					<TableRow component="th">
+					<TableRow>
 						{map(columns, (sub) =>
 							<TableCell
 								key={ sub }
@@ -52,7 +54,7 @@ const MarkSheetD = (context) => {
 					</TableRow>
 				</TableHead>
 				<TableBody>
-					{map(newData, (row, i) => <TableRow key={ i }>{
+					{map(filterMark, (row, i) => <TableRow key={ i }>{
 						map(values(row), (ele, j) =>
 							<TableCell
 								key={ j }
@@ -63,17 +65,30 @@ const MarkSheetD = (context) => {
 				</TableBody>
 			</Table>
 		</TableContainer>
-		{map(subjects, (sub) => <Tooltip title={ `${ sub }` }>
-			<Slider
-				value={ range }
-				onChange={ handleChange }
-				color="success"
-				size="large"
-				valueLabelDisplay="auto"
-				min={ 0 }
-				max={ 100 }
-			/>
-		</Tooltip>)}
+		{map(subjects, (subject) => <Grid
+			key={ subject }
+			container={ true }
+			spacing={ 2 }
+		                            >
+			<Grid item={ true }>
+				<Typography>
+					{ subject }
+				</Typography>
+			</Grid>
+			<Grid item={ true } xs={ true }>
+				<Slider
+					getAriaLabel={ () => 'Mark range' }
+					value={ range[subject] }
+					onChange={ (evt) => context.actions
+						.changingRange({ [subject]: evt.target.value }) }
+					color="success"
+					size="large"
+					valueLabelDisplay="auto"
+					min={ 0 }
+					max={ 100 }
+				/>
+			</Grid>
+		</Grid>)}
 	</Box>;
 };
 
