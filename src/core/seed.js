@@ -5,6 +5,8 @@ const seed = {
 		TAMIL: [20, 30],
 		SCIENCE: [60, 80],
 	},
+	value: 0,
+	sValue: 1,
 };
 
 export default seed;
