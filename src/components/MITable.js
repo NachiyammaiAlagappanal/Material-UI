@@ -30,7 +30,13 @@ const MarkSheetD = (context) => {
 
 	console.log(filterMark);
 
-	return <Box sx={ { width: 200 } }>
+	return <Box sx={ {
+		my: 5,
+		mx: 55,
+		p: 5,
+		width: 200,
+	} }
+	       >
 		<TableContainer
 			sx={ {
 				'width': 650,

@@ -18,13 +18,14 @@ const TabContent = (context) => {
 			value={ value }
 			onChange={ (event, data) => context.actions
 				.changingTab(data) }
+			centered={ true }
 			textColor="inherit"
 			indicatorColor="secondary"
 		>
-			<Tab label="InputData"/>
-			<Tab label="FilteredMarkList"/>
+			<Tab label="Data"/>
+			<Tab label="Reports"/>
 		</Tabs>
-		<TabPanel value={ value } index={ 0 }>Input Data need to update
+		<TabPanel value={ value } index={ 0 }>Input data need to update
 		</TabPanel>
 		<TabPanel value={ value } index={ 1 }>{ MarkSheetD(context)}
 		</TabPanel>
