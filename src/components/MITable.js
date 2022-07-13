@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable max-lines-per-function */
 import { React } from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,6 +14,8 @@ import consolidatedData from '../services/consolidatedData';
 import { unique } from '@laufire/utils/predicates';
 import { Grid, Slider, Typography } from '@mui/material';
 import FilterManager from '../services/FilterManager';
+import ToggleButton from '@mui/material/ToggleButton';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
 const sliders = (context) => {
 	const { state: { range }, data: subject } = context;
@@ -96,14 +100,38 @@ const TableContain = (context) =>
 	>{ table(context)}
 	</TableContainer>;
 
+const Toggle = (context) => {
+	const { state: { alignment }} = context;
+
+	console.log(context);
+
+	return (
+		<ToggleButtonGroup
+			color="primary"
+			value={ alignment }
+			exclusive={ true }
+			onChange={ (event, data) => context.actions.Toggle(data) }
+		>
+			<ToggleButton value="Table">Table</ToggleButton>
+			<ToggleButton value="Plot">Plot</ToggleButton>
+		</ToggleButtonGroup>);
+};
+
+const checkToggle = (context) => {
+	const { state: { alignment }} = context;
+
+	return alignment === 'Table' ? TableContain(context) : 0;
+};
+
 const MarkSheetD = (context) =>
 	<Grid
 		container={ true }
 		justifyContent="center"
 		paddingTop={ 5 }
 	>
+		{Toggle(context)}
 		{sliderFunction(context)}
-		{TableContain(context)}
+		{checkToggle(context)}
 	</Grid>;
 
 export default MarkSheetD;

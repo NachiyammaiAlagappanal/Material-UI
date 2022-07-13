@@ -6,7 +6,7 @@ const seed = {
 		SCIENCE: [60, 80],
 	},
 	value: 0,
-	sValue: 1,
+	alignment: ['Table', 'Plot'],
 };
 
 export default seed;

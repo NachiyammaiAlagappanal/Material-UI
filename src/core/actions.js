@@ -7,6 +7,9 @@ const actions = {
 	changingTab: (context) => ({
 		value: context.data,
 	}),
+	Toggle: (context) => ({
+		alignment: context.data,
+	}),
 };
 
 export default actions;
