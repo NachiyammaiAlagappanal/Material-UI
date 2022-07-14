@@ -16,6 +16,7 @@ import { Grid, Slider, Typography } from '@mui/material';
 import FilterManager from '../services/FilterManager';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { Poll, TableView } from '@mui/icons-material';
 
 const sliders = (context) => {
 	const { state: { range }, data: subject } = context;
@@ -46,13 +47,13 @@ const sliderFunction = (context) => {
 			>
 				<Grid item={ true }>
 					<Typography>
-						{ subject }
+						{subject}
 					</Typography>
 				</Grid>
 				<Grid
 					item={ true }
 					xs={ 2 }
-				>{ sliders({ ...context, data: subject })}</Grid>
+				>{sliders({ ...context, data: subject })}</Grid>
 			</Grid>));
 };
 
@@ -97,23 +98,31 @@ const TableContain = (context) =>
 			},
 		} }
 		component={ Paper }
-	>{ table(context)}
+	>{table(context)}
 	</TableContainer>;
 
 const Toggle = (context) => {
-	const { state: { alignment }} = context;
+	const { state: { alignment }, state } = context;
 
-	console.log(context);
+	console.log(state);
 
 	return (
 		<ToggleButtonGroup
 			color="primary"
 			value={ alignment }
 			exclusive={ true }
-			onChange={ (event, data) => context.actions.Toggle(data) }
 		>
-			<ToggleButton value="Table">Table</ToggleButton>
-			<ToggleButton value="Plot">Plot</ToggleButton>
+			<ToggleButton
+				value="Table"
+				fontSize="large"
+				onClick={ () => context.actions.Toggle('Table') }
+			>
+				<TableView/></ToggleButton>
+			<ToggleButton
+				value="Plot"
+				fontSize="large"
+				onClick={ () => context.actions.Toggle('Plot') }
+			><Poll/></ToggleButton>
 		</ToggleButtonGroup>);
 };
 
