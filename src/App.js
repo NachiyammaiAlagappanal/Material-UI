@@ -6,9 +6,7 @@ import Image from './images/redMark.png';
 
 const App = (context) =>
 	<div className="App" role="App">
-		{TabContent(context)}
-		<a href="https://www.w3schools.com">
-			<img src={ Image } width="50" height="50"/></a>
+		HELLOWORLD
 	</div>;
 
 export default App;
